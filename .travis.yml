@@ -1,11 +1,8 @@
 language: python
 python:
-  - 3.9.6
+  - "3.9.6"
 cache: pip
-before_install:
-  - cd P8_Pur_Beurre
-install:
+before_script:
   - pip install -r requirements.txt
-  - pip install .
 script:
   - python manage.py test

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Produit non trouvé{% endblock %}
+
+
+{% block header %}
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
+                    <h1 class="text-white font-weight-bold">Il n'a pas de produit correspondant à votre recherche.</h1>
+                    <hr class="divider" />
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <h2 class="text-white-75 mb-5">Voulez vous réessayer ?</h2>
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <a class="btn btn-primary btn-xl" href="/" type="submit">Accueil</a>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}

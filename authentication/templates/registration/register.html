@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block tile%}Register{% endblock %}
+
+{% block content %}
+<!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6 text-center">
+                        <h2 class="mt-0">Créer un compte</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">Prêt à utiliser notre application ? Créer un compte et profiter d'un espace avec tout vos produits.</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                    <div class="col-lg-6">
+                        <form action="{% url 'register' %}" method="post">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <input type="submit" value="Valider" id="valid-btn">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
