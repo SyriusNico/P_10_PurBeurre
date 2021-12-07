@@ -1,6 +1,10 @@
 language: python
+
 python:
   - 3.9.6
 
 before_script:
-  - git clone https://github.com/SyriusNico/P8_Nutella.git
+  - git clone https://github.com/SyriusNico/P8_Nutella.git && cd ./P8_Nutella
+
+script:
+  - python manage.py test
