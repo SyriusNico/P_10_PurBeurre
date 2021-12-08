@@ -22,11 +22,7 @@ services:
   - postgresql
 
 env:
-  global:
-    - DJANGO_SETTINGS_MODULE=nutella_project.settings
-    - PGPORT=5432
-
-cache: pip
+  - DJANGO_SETTINGS_MODULE='nutella_project.settings'
 
 before_script:
   - pip install -r requirements.txt
