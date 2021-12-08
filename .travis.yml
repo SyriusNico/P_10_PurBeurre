@@ -24,7 +24,7 @@ services:
 env:
   global:
     - DJANGO_SETTINGS_MODULE=nutella_project.settings
-    - PGPORT=5433
+    - PGPORT=5432
 
 cache: pip
 
