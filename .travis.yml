@@ -25,8 +25,8 @@ env:
   - DJANGO_SETTINGS_MODULE='nutella_project.settings'
 
 before_script:
-  - pip install -r requirements.txt
   - psql -c 'create database travis_ci_test;' -U postgres
+  - pip install -r requirements.txt
 
 script:
   - python manage.py test
