@@ -1,8 +1,8 @@
 before_install:
   - wget https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip
   - mkdir chromedriver_linux64
-  - tar -xzf chromedriver_linux64 -C chromedriver
-  - export PATH=$PATH:$PWD/chromedriver
+  - tar -xzf chromedriver_linux64 -C chromedriver_linux64
+  - export PATH=$PATH:$PWD/chromedriver_linux64
 
 
 language: python
