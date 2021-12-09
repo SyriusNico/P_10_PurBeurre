@@ -1,4 +1,5 @@
 before_install:
+  - chmod +x manage.py
   - wget https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip
   - mkdir chromedriver_linux64
   - unzip chromedriver_linux64.zip -d ~/
