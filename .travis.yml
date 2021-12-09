@@ -1,9 +1,9 @@
 before_install:
-  - export PYTHONPATH="$(pwd)"
-  - chmod +x manage.py
   - wget https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.9.6/
-  - export CHROME_BIN=chromium-browser
+  - mkdir chromedriver
+  - tar -xzf chromedriver_linux64 -C chromedriver
+  - export PATH=$PATH:$PWD/chromedriver
+
 
 language: python
 
