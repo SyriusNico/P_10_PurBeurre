@@ -2,8 +2,7 @@ before_install:
   - chmod +x manage.py
   - wget https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d ~/
-  - sudo mv -f ~/chromedriver /usr/local/bin/
-  - sudo chmod +x /usr/local/bin/chromedriver
+  - export CHROME_BIN=chromium-browser
 
 
 language: python
@@ -12,11 +11,7 @@ python:
   - "3.9"
 
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  chrome: stable
       
 services:
   - postgresql

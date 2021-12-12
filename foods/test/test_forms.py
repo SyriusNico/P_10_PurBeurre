@@ -8,7 +8,7 @@ import time
 class SearchFormTest(LiveServerTestCase):
 
 	def test_search_navbar(self):
-		selenium = webdriver.Chrome(executable_path="chromedriver")
+		selenium = webdriver.Chrome()
 		selenium.maximize_window()
 		# Choose your url to visit
 		selenium.get('http://127.0.0.1:8000/')
