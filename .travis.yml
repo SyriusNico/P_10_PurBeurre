@@ -18,7 +18,7 @@ env:
   - DJANGO_SETTINGS_MODULE='nutella_project.settings'
 
 before_install:
-  - chmod +x manage.py
+  - chmod +x ./manage.py
   - wget https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
