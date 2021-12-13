@@ -25,6 +25,7 @@ before_script:
   - sudo mv -f ~/chromedriver /usr/local/share/
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  - google-chrome-stable --no-sandbox --disable-dev-shm-usage --headless --start-maximized --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
   - ./manage.py test
