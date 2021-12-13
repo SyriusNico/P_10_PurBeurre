@@ -1,11 +1,3 @@
-before_install:
-  - chmod +x manage.py
-  - wget https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.9/
-  - export CHROME_BIN=chromium-browser
-  - "export DISPLAY=:99.0"
-
-
 language: python
 
 python:
@@ -20,5 +12,11 @@ services:
 env:
   - DJANGO_SETTINGS_MODULE='nutella_project.settings'
 
+before_script:
+  - chmod +x manage.py
+  - wget https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip -d /home/travis/build/P_10_PurBeurre/
+  - export CHROME_BIN=chromium-browser
+  
 script:
   - ./manage.py test
