@@ -34,7 +34,7 @@
                             <form action="{% url 'result' %}" method="GET">
                                 {% csrf_token %}
                                 <input  type="text" placeholder="Chercher" name="searched" value="{{ request.GET.searched}}">
-                                <button class="btn btn-outline-primary btn-rounded btn-m my-0 ml-2" type="submit">Chercher</button>
+                                <button class="btn btn-outline-primary btn-rounded btn-m my-0 ml-2" id="navbarSearchbtn" type="submit">Chercher</button>
                             </form>
                         </div>
                         </li>
