@@ -16,7 +16,7 @@ env:
 before_script:
   - echo $PATH
   - chmod +x ./manage.py
-  - wget -N https://chromedriver.storage.googleapis.com/96.0.4664.110/chromedriver_linux64.zip -P ~/
+  - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d /home/travis/virtualenv/python3.9.7/bin/
   - sudo chmod +x /home/travis/virtualenv/python3.9.7/bin/chromedriver
   - - google-chrome-stable --no-sandbox --disable-dev-shm-usage --headless --start-maximized --disable-gpu --remote-debugging-port=9222 http://localhost &
