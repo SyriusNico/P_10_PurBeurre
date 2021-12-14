@@ -18,7 +18,7 @@ class SearchFormTest(StaticLiveServerTestCase):
 			specific_options.add_argument("--headless")
 			specific_options.add_argument("--disable-dev-shm-usage")
 			specific_options.add_argument("--disable-gpu")
-			cls.selenium = WebDriver(ChromeDriverManager().install(),
+			cls.selenium = WebDriver(executable_path=chromedriver.exe,
 									options=specific_options)
 		else:
 			specific_options=Options()
@@ -26,7 +26,7 @@ class SearchFormTest(StaticLiveServerTestCase):
 			specific_options.add_argument("--headless")
 			specific_options.add_argument("--disable-dev-shm-usage")
 			specific_options.add_argument("--disable-gpu")
-			cls.selenium = WebDriver(ChromeDriverManager().install(), 
+			cls.selenium = WebDriver(executable_path=chromedriver.exe,
 									options=specific_options)
 		cls.selenium.implicitly_wait(10)
 		
