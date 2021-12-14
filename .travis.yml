@@ -3,10 +3,6 @@ language: python
 python:
   - "3.9"
 
-before-install:
-  - "export DISPLAY=99:0"
-  - sleep 3
-
 addons:
   chrome: stable
       
@@ -21,11 +17,7 @@ before_script:
   - echo $PATH
   - chmod +x ./manage.py
   - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
-  - unzip ~/chromedriver_linux64.zip -d ~/
-  - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  - unzip ~/chromedriver_linux64.zip -d /home/travis/virtualenv/python3.9.7/bin/
 
 script:
   - ./manage.py test
