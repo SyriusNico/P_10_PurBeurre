@@ -22,9 +22,8 @@ before_script:
   - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  - sudo mv -f ~/chromedriver /home/travis/build/SyriusNico/P_10_PurBeurre/
+  - sudo chmod +x /home/travis/build/SyriusNico/P_10_PurBeurre/chromedriver
   - google-chrome-stable --no-sandbox --disable-dev-shm-usage --headless --start-maximized --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
