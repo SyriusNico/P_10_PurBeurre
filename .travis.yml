@@ -23,7 +23,7 @@ before_script:
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
   - sudo mv -f ~/chromedriver /home/travis/build/SyriusNico/P_10_PurBeurre/
-  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo chmod +x /home/travis/build/SyriusNico/P_10_PurBeurre/chromedriver
 
 script:
   - ./manage.py test
