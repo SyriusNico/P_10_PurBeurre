@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 import django_heroku
+
+from selenium import webdriver
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -179,3 +182,13 @@ CATEGORIES_LIST = [
     ]
 
 NB_RESULT = 30
+
+SELENIUM_WEBDRIVERS = {
+    "default": {"callable": webdriver.Chrome, "args": (), "kwargs": {}},
+    "firefox": {"callable": webdriver.Firefox, "args": (), "kwargs": {}},
+    "chrome-headless": {
+        "callable": webdriver.Chrome,
+        "args": (),
+        "kwargs": {"options": headless_chrome_options},
+    },
+}
