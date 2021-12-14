@@ -2,6 +2,7 @@ import os
 import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.chrome.webdriver import WebDriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -18,14 +19,16 @@ class SearchFormTest(StaticLiveServerTestCase):
 			specific_options.add_argument("--headless")
 			specific_options.add_argument("--disable-dev-shm-usage")
 			specific_options.add_argument("--disable-gpu")
-			cls.selenium = WebDriver(options=specific_options)
+			cls.selenium = WebDriver(ChromeDriverManager().install(),
+									options=specific_options)
 		else:
 			specific_options=Options()
 			specific_options.add_argument("--no-sandbox")
 			specific_options.add_argument("--headless")
 			specific_options.add_argument("--disable-dev-shm-usage")
 			specific_options.add_argument("--disable-gpu")
-			cls.selenium = WebDriver(options=specific_options)
+			cls.selenium = WebDriver(ChromeDriverManager().install(),
+									options=specific_options)
 		cls.selenium.implicitly_wait(10)
 
 	@classmethod
