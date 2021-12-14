@@ -22,8 +22,7 @@ before_script:
   - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /home/travis/build/SyriusNico/P_10_PurBeurre/
-  - sudo chmod +x /home/travis/build/SyriusNico/P_10_PurBeurre/chromedriver
-
+  - export PATH=$PATH:$PWD/chromedriver
+  
 script:
   - ./manage.py test
