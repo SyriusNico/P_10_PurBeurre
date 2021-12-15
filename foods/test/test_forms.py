@@ -8,7 +8,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.utils import ChromeType
 
 
 class SearchFormTest(StaticLiveServerTestCase):
@@ -18,9 +17,7 @@ class SearchFormTest(StaticLiveServerTestCase):
 		super().setUpClass()
 		runOnTravis = 'TRAVIS' in os.environ 
 		if runOnTravis:
-			cls.selenium = WebDriver(
-				ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-				)
+			cls.selenium = WebDriver(ChromeDriverManager().install())
 		else:
 			specific_options=Options()
 			specific_options.add_argument("--no-sandbox")
