@@ -6,7 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-
+from webdriver_manager.utils import ChromeType
 
 class SearchFormTest(StaticLiveServerTestCase):
 
@@ -15,7 +15,9 @@ class SearchFormTest(StaticLiveServerTestCase):
 		super().setUpClass()
 		runOnTravis = 'TRAVIS' in os.environ 
 		if runOnTravis:
-			cls.selenium = WebDriver()
+			cls.selenium = WebDriver(
+				ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(),
+				)
 		else:
 			specific_options=Options()
 			specific_options.add_argument("--no-sandbox")
@@ -23,8 +25,7 @@ class SearchFormTest(StaticLiveServerTestCase):
 			specific_options.add_argument("window-size=1200x600")
 			specific_options.add_argument("--disable-dev-shm-usage")
 			specific_options.add_argument("--disable-gpu")
-			cls.selenium = WebDriver(ChromeDriverManager().install(),
-									options=specific_options)
+			cls.selenium = WebDriver(options=specific_options)
 		cls.selenium.implicitly_wait(10)
 
 	@classmethod
