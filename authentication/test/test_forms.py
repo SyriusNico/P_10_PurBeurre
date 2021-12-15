@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class SearchFormTest(StaticLiveServerTestCase):
@@ -22,7 +23,8 @@ class SearchFormTest(StaticLiveServerTestCase):
 			specific_options.add_argument("window-size=1200x600")
 			specific_options.add_argument("--disable-dev-shm-usage")
 			specific_options.add_argument("--disable-gpu")
-			cls.selenium = WebDriver(options=specific_options)
+			cls.selenium = WebDriver(ChromeDriverManager().install(),
+									options=specific_options)
 		cls.selenium.implicitly_wait(10)
 
 	@classmethod
