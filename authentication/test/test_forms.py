@@ -14,15 +14,12 @@ class SearchFormTest(StaticLiveServerTestCase):
 		super().setUpClass()
 		runOnTravis = 'TRAVIS' in os.environ 
 		if runOnTravis:
-			specific_options=Options()
-			specific_options.add_argument("--headless")
-			specific_options.add_argument("--disable-dev-shm-usage")
-			specific_options.add_argument("--disable-gpu")
-			cls.selenium = WebDriver(options=specific_options)
+			cls.selenium = WebDriver()
 		else:
 			specific_options=Options()
 			specific_options.add_argument("--no-sandbox")
 			specific_options.add_argument("--headless")
+			specific_options.add_argument("window-size=1200x600")
 			specific_options.add_argument("--disable-dev-shm-usage")
 			specific_options.add_argument("--disable-gpu")
 			cls.selenium = WebDriver(options=specific_options)
@@ -35,7 +32,6 @@ class SearchFormTest(StaticLiveServerTestCase):
 
 	def test_search_navbar(self):
 
-		self.selenium.maximize_window()
 		# Choose your url to visit
 		self.selenium.get('http://127.0.0.1:8000/authentication/register/')
 		time.sleep(2)
