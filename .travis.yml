@@ -24,7 +24,7 @@ before_script:
   - rm ~/chromedriver_linux64.zip
   - mv -f ~/chromedriver /home/travis/virtualenv/python3.9.7/bin
   - chmod +x /home/travis/virtualenv/python3.9.7/bin/chromedriver
-  - ln -s /home/travis/virtualenv/python3.9.7/bin/chromedriver /usr/local/bin/chromedrive
+  - sudo ln -s /home/travis/virtualenv/python3.9.7/bin/chromedriver /usr/local/bin/chromedrive
 
 script:
   - ./manage.py test
