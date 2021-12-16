@@ -20,10 +20,9 @@ before_script:
   - echo $PATH
   - chmod +x ./manage.py
   - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
-  - unzip ~/chromedriver_linux64.zip -d /usr/local/bin/
-  - chmod +x /usr/local/bin/chromedriver
-  - export CHROME_BIN=chromium-browser
-  - export PATH=/home/travis/virtualenv/python3.9.7/bin/c:$PATH
+    - unzip ~/chromedriver_linux64.zip -d ~/
+    - rm ~/chromedriver_linux64.zip
+    - sudo mv -f ~/chromedriver /usr/local/bin/
 
 script:
   - ./manage.py test
