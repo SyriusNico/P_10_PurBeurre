@@ -17,7 +17,10 @@ class SearchFormTest(StaticLiveServerTestCase):
 		super().setUpClass()
 		runOnTravis = 'TRAVIS' in os.environ 
 		if runOnTravis:
-			cls.selenium = WebDriver()
+			chrome_options = webdriver.Options()
+			chrome_options.binary_location = '/usr/bin/chromium-browser'
+			cls.selenium = WebDriver('/home/travis/virtualenv/python3.9.7/chromedriver',
+									options=chrome_options)
 		else:
 			specific_options=Options()
 			specific_options.add_argument("--no-sandbox")
