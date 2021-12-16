@@ -19,7 +19,7 @@ env:
 before_script:
   - echo $PATH
   - chmod +x ./manage.py
-  - chmod =x chromedriver
+  - chmod +x chromedriver
   - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d /usr/local/bin/
   - export CHROME_BIN=chromium-browser
