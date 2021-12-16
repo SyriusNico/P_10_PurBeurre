@@ -23,7 +23,7 @@ before_script:
   - unzip ~/chromedriver_linux64.zip -d ~/chromedriver
   - rm ~/chromedriver_linux64.zip
   - sudo mv -f ~/chromedriver /home/travis/virtualenv/python3.9.7/bin
-  - sudo chmod +x /home/travis/virtualenv/python3.9.7/bin/chromedriver
+  - chmod +x /home/travis/virtualenv/python3.9.7/bin/chromedriver
   - sudo ln -s /home/travis/virtualenv/python3.9.7/bin/chromedriver /usr/local/bin/chromedrive
 
 script:
