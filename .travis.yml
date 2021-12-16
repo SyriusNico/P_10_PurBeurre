@@ -20,9 +20,9 @@ before_script:
   - echo $PATH
   - chmod +x ./manage.py
   - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
-    - unzip ~/chromedriver_linux64.zip -d ~/
-    - rm ~/chromedriver_linux64.zip
-    - sudo mv -f ~/chromedriver /usr/local/bin/
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/bin/
 
 script:
   - ./manage.py test
