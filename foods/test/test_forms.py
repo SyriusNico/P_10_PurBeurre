@@ -19,7 +19,7 @@ class SearchFormTest(StaticLiveServerTestCase):
 		if runOnTravis:
 			chrome_options = webdriver.Options()
 			chrome_options.binary_location = '/usr/bin/chromium-browser'
-			cls.selenium = WebDriver('/home/travis/virtualenv/python3.9.7/chromedriver',
+			cls.selenium = WebDriver('/home/travis/virtualenv/python3.9.7/bin/chromedriver',
 									options=chrome_options)
 		else:
 			specific_options=Options()
