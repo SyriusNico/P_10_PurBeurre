@@ -9,7 +9,7 @@ addons:
   chrome: stable
   
 before_install:
-- google-chrome-stable --no-sandbox --headless --start-maximized --disable-gpu --remote-debugging-port=9222 http://localhost &
+- google-chrome-stable --no-sandbox --disable-dev-shm-usage --headless --start-maximized --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 services:
   - postgresql
@@ -24,8 +24,8 @@ before_script:
   - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/chromedriver
   - rm ~/chromedriver_linux64.zip
+  - sudo chmod +x ~/chromedriver
   - sudo mv -f ~/chromedriver /home/travis/virtualenv/python3.9.7/bin
-  - sudo chmod +x /home/travis/virtualenv/python3.9.7/bin/chromedriver
   - sudo ln -s /home/travis/virtualenv/python3.9.7/bin/chromedriver /usr/local/bin/chromedrive
 
 script:
