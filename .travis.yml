@@ -1,5 +1,7 @@
 language: python
 
+dist: xenial
+
 python:
   - "3.9"
 
@@ -24,7 +26,7 @@ before_script:
   - rm ~/chromedriver_linux64.zip
   - sudo mv -f ~/chromedriver /home/travis/virtualenv/python3.9.7/bin
   - sudo chmod +x /home/travis/virtualenv/python3.9.7/bin/chromedriver
-  - export CHROME_BIN=chromium-browser
+  - sudo ln -s /home/travis/virtualenv/python3.9.7/bin/chromedriver /usr/local/bin/chromedrive
 
 script:
   - ./manage.py test
