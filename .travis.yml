@@ -23,7 +23,7 @@ env:
 before_script:
   - echo $PATH
   - chmod +x ./manage.py
-  - wget -N https://chromedriver.storage.googleapis.com/95.0.4638.69/chromedriver_linux64.zip -P ~/
+  - wget -N https://chromedriver.storage.googleapis.com/96.0.4664.45/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/chromedriver
   - rm ~/chromedriver_linux64.zip
   - sudo mv -f ~/chromedriver /home/travis/virtualenv/python3.9.7/bin
