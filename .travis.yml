@@ -18,9 +18,9 @@ env:
 before_script:
   - echo $PATH
   - chmod +x ./manage.py
-  - wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+  - wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
-  - sudo mv /usr/local/bin/
+  - sudo mv chromedriver /usr/local/bin/
 
 script:
   - ./manage.py test
