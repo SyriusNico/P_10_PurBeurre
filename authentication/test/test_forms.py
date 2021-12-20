@@ -54,5 +54,12 @@ class SearchFormTest(StaticLiveServerTestCase):
 		# submit form
 		submit.send_keys(Keys.RETURN)
 		time.sleep(5)
+		name = self.selenium.find_element_by_name('username')
+		pswd = self.selenium.find_element_by_name('password')
+		valid = self.selenium.find_element_by_id('valid-text')
+		# profile_name = self.selenium.find_element_by_css_selector('.text-white-75')
+		name.send_keys('maxime')
+		pswd.send_keys('max12345.')
+		valid.send_keys(Keys.RETURN)
 		# check result; page source looks at entire html document
 		assert 'maxime' in self.selenium.page_source
