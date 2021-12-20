@@ -37,7 +37,7 @@ class SearchFormTest(StaticLiveServerTestCase):
 
 	def test_search_navbar(self):
 		# Choose your url to visit
-		self.selenium.get('http://127.0.0.1:8000/')
+		self.selenium.get(self.live_server_url)
 		time.sleep(5)
 		# find the elements you need to submit form
 		product_name = self.selenium.find_element_by_name('searched')

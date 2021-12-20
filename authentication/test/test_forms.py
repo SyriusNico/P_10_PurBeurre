@@ -18,17 +18,13 @@ class SearchFormTest(StaticLiveServerTestCase):
 			specific_options=Options()
 			specific_options.add_argument("--no-sandbox")
 			specific_options.add_argument("--headless")
-			specific_options.add_argument("window-size=1200x600")
+			specific_options.add_argument("start-maximized")
 			specific_options.add_argument("--disable-dev-shm-usage")
 			specific_options.add_argument("--disable-gpu")
 			cls.selenium = WebDriver(options=specific_options)
 		else:
 			specific_options=Options()
-			specific_options.add_argument("--no-sandbox")
-			specific_options.add_argument("--headless")
-			specific_options.add_argument("window-size=1200x600")
-			specific_options.add_argument("--disable-dev-shm-usage")
-			specific_options.add_argument("--disable-gpu")
+			specific_options.add_argument("start-maximized")
 			cls.selenium = WebDriver(options=specific_options)
 		cls.selenium.implicitly_wait(10)
 
@@ -40,7 +36,7 @@ class SearchFormTest(StaticLiveServerTestCase):
 	def test_search_navbar(self):
 
 		# Choose your url to visit
-		self.selenium.get('http://127.0.0.1:8000/authentication/register/')
+		self.selenium.get('{}/authentication/register/'.format(self.live_server_url))
 		time.sleep(2)
 		# find the elements you need to submit form
 		username = self.selenium.find_element_by_id('id_username')
