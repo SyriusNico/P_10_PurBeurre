@@ -15,7 +15,13 @@ class SearchFormTest(StaticLiveServerTestCase):
 		super().setUpClass()
 		runOnTravis = 'TRAVIS' in os.environ 
 		if runOnTravis:
-			cls.selenium = WebDriver()
+			specific_options=Options()
+			specific_options.add_argument("--no-sandbox")
+			specific_options.add_argument("--headless")
+			specific_options.add_argument("window-size=1200x600")
+			specific_options.add_argument("--disable-dev-shm-usage")
+			specific_options.add_argument("--disable-gpu")
+			cls.selenium = WebDriver(options=specific_options)
 		else:
 			specific_options=Options()
 			specific_options.add_argument("--no-sandbox")
