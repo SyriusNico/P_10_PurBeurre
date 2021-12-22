@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import environ
 import os
 import django_heroku
 
@@ -28,19 +29,17 @@ SECRET_KEY = os.environ.get(
 )
 if os.environ.get('ENV') == "PRODUCTION":
     DEBUG = False
-    STATIC_ROOT = os.environ.join(BASE_DIR, 'staticfiles')
+    STATIC_ROOT = environ.Env.read_env(os.path.join(BASE_DIR, 'staticfiles'))
 
-    STATICFILES_DIRS = (
+    STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'),
-    )
-    STATICFILES_STORAGE = \
-        'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    ]
 else:
     DEBUG = True
 
 
 
-ALLOWED_HOSTS = ["purbeurre-app.herokuapp.com","localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ['188.166.169.7']
 
 
 # Application definition
@@ -69,7 +68,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'nutella_project.urls'
@@ -100,10 +98,10 @@ WSGI_APPLICATION = 'nutella_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'PurBeurre',
-        'USER': 'postgres',
-        'PASSWORD': 'popi',
-        'HOST': '',
+        'NAME': 'purbeurre',
+        'USER': 'pnschlei',
+        'PASSWORD': 'jaimelenutella',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -144,7 +142,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -183,19 +180,3 @@ CATEGORIES_LIST = [
 
 NB_RESULT = 30
 
-# #selenium settings
-# headless_chrome_options = webdriver.ChromeOptions()
-# headless_chrome_options.add_argument("--headless")
-# headless_chrome_options.add_argument("--disable-gpu")
-# headless_chrome_options.add_argument("--no-sandbox")
-# headless_chrome_options.add_argument("--disable-dev-shm-usage")
-
-# SELENIUM_WEBDRIVERS = {
-#     "default": {"callable": webdriver.Chrome, "args": (), "kwargs": {}},
-#     "firefox": {"callable": webdriver.Firefox, "args": (), "kwargs": {}},
-#     "chrome-headless": {
-#         "callable": webdriver.Chrome,
-#         "args": (),
-#         "kwargs": {"options": headless_chrome_options},
-#     },
-# }
