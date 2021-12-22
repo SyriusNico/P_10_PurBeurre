@@ -13,11 +13,10 @@ import environ
 import os
 import django_heroku
 
-from selenium import webdriver
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -29,11 +28,6 @@ SECRET_KEY = os.environ.get(
 )
 if os.environ.get('ENV') == "PRODUCTION":
     DEBUG = False
-    STATIC_ROOT = environ.Env.read_env(os.path.join(BASE_DIR, 'staticfiles'))
-
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static'),
-    ]
 else:
     DEBUG = True
 
@@ -45,9 +39,6 @@ ALLOWED_HOSTS = ['188.166.169.7']
 # Application definition
 
 INSTALLED_APPS = [
-
-
-
     'foods.apps.FoodsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,8 +133,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
