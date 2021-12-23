@@ -1,7 +1,6 @@
 # Nutella_project
 nutella_project/settings/production.py
 __pycache__
-staticfiles
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
