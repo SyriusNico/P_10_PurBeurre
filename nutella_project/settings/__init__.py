@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import environ
+
 import os
 import django_heroku
 
@@ -22,18 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    'SECRET_KEY',
-    'django-insecure-8z1t2)awwqen=bx==l2doak57wkou5%#81%565wbftgrn6$j$j'
-)
-if os.environ.get('ENV') == "PRODUCTION":
-    DEBUG = False
-else:
-    DEBUG = True
+SECRET_KEY = 'django-insecure-8z1t2)awwqen=bx==l2doak57wkou5%#81%565wbftgrn6$j$j'
+
+DEBUG = True
 
 
 
-ALLOWED_HOSTS = ['188.166.169.7']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -89,10 +84,10 @@ WSGI_APPLICATION = 'nutella_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'purbeurre',
-        'USER': 'pnschlei',
-        'PASSWORD': 'jaimelenutella',
-        'HOST': 'localhost',
+        'NAME': 'PurBeurre',
+        'USER': 'postgres',
+        'PASSWORD': 'popi',
+        'HOST': '',
         'PORT': '5432',
     }
 }
