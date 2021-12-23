@@ -12,6 +12,10 @@ services:
 env:
   - DJANGO_SETTINGS_MODULE='nutella_project.settings'
 
+branches:
+  only:
+    - staging
+    
 before_script:
   - echo $PATH
   - chmod +x ./manage.py
