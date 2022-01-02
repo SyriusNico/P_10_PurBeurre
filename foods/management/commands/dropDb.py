@@ -5,7 +5,6 @@ def clearDatas():
 
 	Categorie.objects.all().delete()
 	Product.objects.all().delete()
-	Favorite.objects.all().delete()
 
 class Command(BaseCommand):
 
