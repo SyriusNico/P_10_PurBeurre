@@ -42,7 +42,7 @@ class ResultView(ListView):
 	# requires user to be logged in
 	def post(self, request, *args, **kwargs):
 		if not request.user.is_authenticated:
-			return HttpResponseForbidden()
+			return render(request, 'foods/permissionDenied.html')
 		else:
 			productToAdd = self.request.POST.get('save', False)
 			self.utils.saveMyChoice(request.user.id, productToAdd)
