@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-import django_heroku
 
 from pathlib import Path
 
@@ -146,9 +145,6 @@ LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'index'
 
 INTERNAL_IPS = ['127.0.0.1']
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
 # Food setting 
 # You can add some categories from https://fr.openfoodfacts.org/categories
