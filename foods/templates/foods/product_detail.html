@@ -19,7 +19,10 @@
 			<br>
 			<br>
 			<div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-				<div class="col-lg-4 col-sm-6 ">
+				<div class="col-lg-4 col-sm-4">
+					<h4>{{ product.notation }}/5</h4>
+				</div>
+				<div class="col-lg-4 col-sm-4 ">
 					{% if product.nutrition_grade == 'a' %}
 					<img class="img-fluid" src="{% static 'dist/assets/img/nutriscore_a.jpg' %}">
 					{% endif %}
@@ -36,7 +39,7 @@
 					<img class="img-fluid" src="{% static 'dist/assets/img/nutriscore_e.jpg' %}">
 					{% endif %}
 				</div>
-				<div class="col-lg-4 col-sm-6 ">
+				<div class="col-lg-4 col-sm-4 ">
 					<h4>Repères nutritionnels pour 100g </h4>
 					<h5>Sucre : {{ product.sugar }}g</h5>
 					<h5>Sel : {{ product.salt }}g</h5>

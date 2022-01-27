@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Categorie(models.Model):
@@ -22,7 +22,15 @@ class Product(models.Model):
 	fat = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 	proteins = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 	category_id = models.ForeignKey(Categorie, on_delete=models.CASCADE)
-
+	notation = models.FloatField(
+		blank=True, 
+		null=True, 
+		validators=[
+			MaxValueValidator(5),
+			MinValueValidator(1)
+		]
+	)
+	
 	def __str__(self):
 		return self.product_name
 

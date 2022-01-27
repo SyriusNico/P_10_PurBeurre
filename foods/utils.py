@@ -23,6 +23,7 @@ class Utils():
 		if objs in Product.objects.all():
 			try:
 				prod = Product.objects.filter(category_id=objs.category_id)
+				print(objs.category_id)
 				if objs.nutrition_grade == 'e' or objs.nutrition_grade == 'd':
 					sub = prod.filter(
 					Q(nutrition_grade='a') | Q(nutrition_grade='b') | Q(nutrition_grade='c')
@@ -44,3 +45,15 @@ class Utils():
 				pass
 		else:
 			return None
+
+	# New fonctionnality
+	def makeANotation(self, choice, mark=int()):
+		product = Product.objects.all().filter(product_name__icontains=choice)
+		product = product.first()
+		if product.notation is not None:
+			product.notation += mark
+			product.notation = product.notation / 2
+			product.save()
+		else:
+			product.notation = mark 
+			product.save()
