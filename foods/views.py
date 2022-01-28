@@ -72,8 +72,6 @@ class RatingPageView(LoginRequiredMixin, UpdateView):
 			return render(request, 'foods/success.html')
 
 
-
-
 class ProfilePageView(TemplateView):
 	template_name = 'foods/profile.html'
 

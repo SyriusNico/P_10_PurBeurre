@@ -25,12 +25,12 @@ class TestUtils(TestCase):
 			category_id=Categorie.objects.get(name="Chocolat"),
 			)
 
-	def test_product_is_notated(self):
+	def test_product_is_rating(self):
 		nutella = Product.objects.get(product_name="nutella")
 		nutella.notation = 2
 		self.assertIsNotNone(nutella.notation)
 
-	def test_product_is_notated_by_one_user(self, mark=5):
+	def test_product_is_rating_by_one_user(self, mark=5):
 		nutella = Product.objects.get(product_name="nutella")
 		nutella.notation = None
 		if nutella.notation is not None:
@@ -40,7 +40,7 @@ class TestUtils(TestCase):
 			nutella.notation = mark 
 		self.assertEqual(nutella.notation, 5)
 
-	def test_product_is_notated_by_many_user(self, product="nutella", mark=5):
+	def test_product_is_rating_by_many_user(self, product="nutella", mark=5):
 		nutella = Product.objects.get(product_name=product)
 		nutella.notation = 8
 		if nutella.notation is not None:
@@ -49,8 +49,3 @@ class TestUtils(TestCase):
 		else:
 			nutella.notation = mark 
 		self.assertEqual(nutella.notation, 6)
-
-	def test_user_can_notate(self):
-		# toto = User.objects.get(username="Toto")
-		# if self.assertIsInstance(toto, User):
-		pass
