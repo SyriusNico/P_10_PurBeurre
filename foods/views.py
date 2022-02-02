@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
@@ -57,6 +57,7 @@ class RatingPageView(LoginRequiredMixin, UpdateView):
 	template_name_suffix = 'update_form'
 	utils = Utils()
 
+
 	def get_object(self):
 		id_ = self.kwargs.get('id')
 		return get_object_or_404(Product, id=id_)
@@ -69,7 +70,7 @@ class RatingPageView(LoginRequiredMixin, UpdateView):
 			rate = self.request.POST.get('rate', False)
 			rate = float(rate)
 			self.utils.makeANotation(self.object, rate)
-			return render(request, 'foods/success.html')
+			return redirect(self.object)
 
 
 class ProfilePageView(TemplateView):
