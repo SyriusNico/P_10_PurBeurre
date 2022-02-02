@@ -19,14 +19,14 @@
 					</a>
 					<br>
 					<br>
-<<<<<<< HEAD
 					<h4>{{ object_list.notation }}</h4>
 					<br>
 					<a href="{% url 'rating' object_list.id %}">
+						{% if user.is_authenticated %}
 						<button class="btn btn-primary btn-l" name="note" type="submit" value="{{ product.id }}"><i class="bi bi-award" aria-hidden="true"></i> Noter</button>
-=======
+						{% endif %}
 					<img class="img-fluid" src="{{ object.url }}" alt="{{ object.product_name }}" />
->>>>>>> 3b1e57f0bf6d03ac2c522df4a9c65afc629c7ca1
+
 					</a>
 				</div>
 			</div>
@@ -114,7 +114,9 @@
 		                        {% csrf_token %}
 		                        <div class="input-group">
 		                        <input  class="form-control mb-4 mb-sm-0" type="text" placeholder="Entrer un nom de produit" name="searched" value="{{ request.GET.searched}}">
+		                        {% if user.is_authenticated %}
 		                        <button class="btn btn-outline-primary btn-rounded btn-m my-0 ml-2" type="submit">Chercher</button>
+		                        {% endif %}
 		                        </div>
 		                    </form>
 		                </div>
