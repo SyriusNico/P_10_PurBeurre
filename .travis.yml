@@ -15,7 +15,8 @@ env:
 branches:
   only:
     - staging
-
+    - P11
+    
 before_script:
   - echo $PATH
   - chmod +x ./manage.py
