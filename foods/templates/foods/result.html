@@ -19,7 +19,7 @@
 					</a>
 					<br>
 					<br>
-					<h4>{{ object_list.notation }}</h4>
+					<h4>{{ object_list.notation | floatformat:1 }}</h4>
 					<br>
 					<a href="{% url 'rating' object_list.id %}">
 						{% if user.is_authenticated %}
@@ -59,7 +59,7 @@
 						<div class="card">
 							<div class="card-header">
 								<div class="rounded float-start">
-									<h4>Note :</h4><h3>{{ product.notation }}/5</h3>
+									<h4>Note :</h4><h3>{{ product.notation | floatformat:1 }}/5</h3>
 								</div>
 								{% if product.nutrition_grade == 'a' %}
 								<img class="rounded float-end" src="{% static 'dist/assets/img/nutriscore_a.jpg' %}" style="width:100px">
