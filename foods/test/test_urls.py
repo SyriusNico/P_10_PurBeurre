@@ -4,7 +4,8 @@ from foods.views import (
 	ResultView,
 	ProductDetailView,
 	ProfilePageView,
-	FavoritesPageView
+	FavoritesPageView,
+	RatingPageView
 )
 
 
@@ -25,3 +26,7 @@ class TestUrls(SimpleTestCase):
 	def test_favorites_url_resolves(self):
 		url = reverse('favorites')
 		self.assertEqual(resolve(url).func.view_class, FavoritesPageView)
+
+	def test_rating_url_resolves(self):
+		url = reverse('rating', args=[1])
+		self.assertEqual(resolve(url).func.view_class, RatingPageView)
