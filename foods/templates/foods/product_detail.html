@@ -21,7 +21,8 @@
 			<div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
 				<div class="col-lg-4 col-sm-4">
 					{% if product.get_rating %}
-					<h4>Note :</h4><h3>{{ product.get_rating }}/5</h3>
+					<h4>Note (moyenne):</h4><h3>{{ product.get_rating }}/5</h3>
+					<p>Nombre de notes pour ce produit : {{ product.get_count }}</p>
 					{% else%}
 					<h4>Note :</h4><h3>--/5</h3>
 					{% endif %}
