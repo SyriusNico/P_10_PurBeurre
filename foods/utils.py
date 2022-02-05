@@ -1,7 +1,7 @@
 from django.db.models import Q
-from .models import Product, Favorite
+from .models import Product, Favorite, ProductReview
 from authentication.models import User
-
+from django.core.exceptions import ObjectDoesNotExist
 
 class Utils():
 
@@ -23,7 +23,6 @@ class Utils():
 		if objs in Product.objects.all():
 			try:
 				prod = Product.objects.filter(category_id=objs.category_id)
-				print(objs.category_id)
 				if objs.nutrition_grade == 'e' or objs.nutrition_grade == 'd':
 					sub = prod.filter(
 					Q(nutrition_grade='a') | Q(nutrition_grade='b') | Q(nutrition_grade='c')
@@ -47,13 +46,52 @@ class Utils():
 			return None
 
 	# New fonctionnality
-	def makeANotation(self, choice, mark=int()):
-		product = Product.objects.all().filter(product_name__icontains=choice)
-		product = product.first()
-		if product.notation is not None:
-			product.notation += mark
-			product.notation = product.notation / 2
-			product.save()
+	# def makeANotation(self, choice, mark=int()):
+	# 	product = Product.objects.all().filter(product_name__icontains=choice)
+	# 	product = product.first()
+	# 	if product.notation is not None:
+	# 		product.notation += mark
+	# 		product.notation = product.notation / 2
+	# 		product.save()
+	# 	else:
+	# 		product.notation = mark 
+	# 		product.save()
+
+	def addReview(self, user, name):
+		productRated = ProductReview.objects.all().filter(
+			customer = user,
+			product_name = name
+		)
+		if productRated:
+			productRated.delete()
+			productReview = ProductReview.objects.create(
+				customer = user,
+				product_name = name,
+			)
+			productReview.save()
+			reviews = ProductReview.objects.all()
+			myReview = reviews.filter(
+				customer = user,
+				product_name = name
+			)
+			return myReview
 		else:
-			product.notation = mark 
-			product.save()
+			productReview = ProductReview.objects.create(
+				customer = user,
+				product_name = name,
+			)
+			productReview.save()
+			reviews = ProductReview.objects.all()
+			myReview = reviews.filter(
+				customer = user,
+				product_name = name
+			)
+			return myReview
+
+	def ratingProduct(self, user, name, _rate):
+		productReview = ProductReview.objects.get(
+			customer =user,
+			product_name = name
+		)
+		productReview.rate = _rate
+		productReview.save()
