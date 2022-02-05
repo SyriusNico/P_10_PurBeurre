@@ -5,7 +5,7 @@ from django.views.generic import (
 	ListView, DetailView, 
 	TemplateView, UpdateView
 )
-from .models import Product, Favorite
+from .models import Product, Favorite, ProductReview
 from .utils import Utils
 
 
@@ -51,10 +51,35 @@ class ResultView(ListView):
 			self.utils.saveMyChoice(request.user.id, choice)
 			return render(request, 'foods/success.html')
 
-class RatingPageView(LoginRequiredMixin, UpdateView):
+# class RatingPageView(LoginRequiredMixin, UpdateView):
+# 	model = Product
+# 	fields = ['notation']
+# 	utils = Utils()
+
+
+# 	def get_object(self):
+# 		id_ = self.kwargs.get('id')
+# 		return get_object_or_404(Product, id=id_)
+
+# 	def post(self, request, *args, **kwargs):
+# 		if not request.user.is_authenticated:
+# 			return render(request, 'foods/permissionDenied.html')
+# 		else:
+# 			self.object = self.get_object()
+# 			print(self.object)
+# 			rate = self.request.POST.get('rate', False)
+# 			rate = float(rate)
+# 			self.utils.makeANotation(
+# 				request.user.id,
+# 				self.object, 
+# 				rate
+# 			)
+# 			return redirect(self.object)
+
+class RatingPageView(LoginRequiredMixin, ListView):
+	template_name = 'foods/product_review.html'
+	context_object_name = 'product_review'
 	model = Product
-	fields = ['notation']
-	template_name_suffix = 'update_form'
 	utils = Utils()
 
 
@@ -62,14 +87,25 @@ class RatingPageView(LoginRequiredMixin, UpdateView):
 		id_ = self.kwargs.get('id')
 		return get_object_or_404(Product, id=id_)
 
+	def get_context_data(self, **kwargs):
+		"""Call the base implementation first to get a context"""
+		context = super().get_context_data(**kwargs)
+		query = self.get_object()
+		product_review = self.utils.addReview(self.request.user, query)
+		context['product_review'] = product_review
+		return context
+
 	def post(self, request, *args, **kwargs):
 		if not request.user.is_authenticated:
 			return render(request, 'foods/permissionDenied.html')
 		else:
 			self.object = self.get_object()
 			rate = self.request.POST.get('rate', False)
-			rate = float(rate)
-			self.utils.makeANotation(self.object, rate)
+			self.utils.ratingProduct(
+				request.user,
+				self.object, 
+				rate
+			)
 			return redirect(self.object)
 
 
