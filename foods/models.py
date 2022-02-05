@@ -32,15 +32,17 @@ class Product(models.Model):
 	def get_absolute_url(self):
 		return reverse('detail', args=[self.id,])
 
-	def get_rating(self):		
-		# for review in self.reviews.values():		
-		# 	return review['rate']
+	def get_rating(self):
+
 		total = sum(review['rate'] for review in self.reviews.values())
 
 		if self.reviews.count() > 0:
 			return int(total / self.reviews.count())
 		else:
 			return 0
+
+	def get_count(self):
+		return self.reviews.count()
 
 class Favorite(models.Model):
 	customer = models.ForeignKey(
