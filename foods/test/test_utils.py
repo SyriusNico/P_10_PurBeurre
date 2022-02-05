@@ -1,18 +1,18 @@
 from django.test import TestCase
-from foods.models import Product, Categorie
+from foods.models import Product, Categorie, ProductReview
 from authentication.models import User
 
 
 class TestUtils(TestCase):
 
 	def setUp(self):
-		User.objects.create(
+		self.user = User.objects.create(
 			username="Toto",
 			email="toto@gmail.com",
 			password="1234"
 			)
-		Categorie.objects.create(name="Chocolat")
-		Product.objects.create(
+		self.cat = Categorie.objects.create(name="Chocolat")
+		self.product = Product.objects.create(
 			product_name="nutella",
 			code="123456",
 			stores="kekpart",
@@ -26,26 +26,10 @@ class TestUtils(TestCase):
 			)
 
 	def test_product_is_rating(self):
-		nutella = Product.objects.get(product_name="nutella")
-		nutella.notation = 2
-		self.assertIsNotNone(nutella.notation)
+		nutella = ProductReview.objects.create(
+			customer = self.user,
+			product_name = self.product,
+			rate = 5
+		) 
+		self.assertEqual(nutella.rate, 5)
 
-	def test_product_is_rating_by_one_user(self, mark=5):
-		nutella = Product.objects.get(product_name="nutella")
-		nutella.notation = None
-		if nutella.notation is not None:
-			nutella.notation += mark
-			nutella.notation = nutella.notation // 2
-		else:
-			nutella.notation = mark 
-		self.assertEqual(nutella.notation, 5)
-
-	def test_product_is_rating_by_many_user(self, product="nutella", mark=5):
-		nutella = Product.objects.get(product_name=product)
-		nutella.notation = 8
-		if nutella.notation is not None:
-			nutella.notation += mark
-			nutella.notation = nutella.notation // 2
-		else:
-			nutella.notation = mark 
-		self.assertEqual(nutella.notation, 6)

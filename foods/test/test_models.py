@@ -1,17 +1,17 @@
 from django.test import TestCase
-from foods.models import Product, Categorie
-
+from foods.models import Product, Categorie, ProductReview
+from authentication.models import User
 
 class TestModels(TestCase):
 
 	def setUp(self):
-		User.objects.create(
+		self.user = User.objects.create(
 			username="Toto",
 			email="toto@gmail.com",
 			password="1234"
 			)
-		Categorie.objects.create(name="Chocolat")
-		Product.objects.create(
+		self.cat = Categorie.objects.create(name="Chocolat")
+		self.product = Product.objects.create(
 			product_name="nutella",
 			code="123456",
 			stores="kekpart",
@@ -23,11 +23,20 @@ class TestModels(TestCase):
 			proteins=7.5,
 			category_id=Categorie.objects.get(name="Chocolat"),
 			)
+		self.product_review = ProductReview.objects.create(
+			customer = self.user,
+			product_name = self.product,
+			rate = 5
+		) 
 
 	def test_product_is_created(self):
-		nutella = Product.objects.get(product_name="nutella")
+		nutella = self.product
 		self.assertIsInstance(nutella, Product)
 
 	def test_user_is_created(self):
-		toto = User.objects.get(username="Toto")
+		toto = self.user
 		self.assertIsInstance(toto, User)
+
+	def test_product_review_is_created(self):
+		product_review = self.product_review
+		self.assertIsInstance(product_review, ProductReview)
