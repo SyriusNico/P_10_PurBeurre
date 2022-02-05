@@ -1,5 +1,8 @@
 from django.db import models
+from django.db.models.query import QuerySet
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.shortcuts import reverse
 
 
 # Create your models here.
@@ -26,6 +29,20 @@ class Product(models.Model):
 	def __str__(self):
 		return self.product_name
 
+	def get_absolute_url(self):
+		return reverse('detail', args=[self.id,])
+
+	def get_rating(self):
+
+		total = sum(review['rate'] for review in self.reviews.values())
+
+		if self.reviews.count() > 0:
+			return int(total / self.reviews.count())
+		else:
+			return 0
+
+	def get_count(self):
+		return self.reviews.count()
 
 class Favorite(models.Model):
 	customer = models.ForeignKey(
@@ -36,6 +53,21 @@ class Favorite(models.Model):
 	favorite = models.ForeignKey(Product, on_delete=models.CASCADE,
 										  related_name='substitute')
 
-	# replace by product
 	def __str__(self):
 		return f"{self.customer}"
+
+
+class ProductReview(models.Model):
+	customer = models.ForeignKey(
+		settings.AUTH_USER_MODEL,
+		on_delete=models.CASCADE,
+		related_name='reviews'
+	)
+	product_name = models.ForeignKey(
+		Product, on_delete=models.CASCADE,
+		related_name='reviews'
+	)
+	rate = models.IntegerField(default=0)
+
+	def __str__(self):
+		return f"{self.product_name}"
