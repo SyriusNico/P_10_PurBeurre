@@ -4,4 +4,4 @@
 
 
 ## Project's link 
-[Pur Beurre](188.166.169.7)
+Pur Beurre : 188.166.169.7
